@@ -1,0 +1,23 @@
+image: node:latest
+
+stages: 
+  - build
+  - deploy
+cache:
+  paths:
+    - node_modules/
+
+install-dependencies-and-build:
+  stage: build
+  script: 
+    - npm install
+    - npm run build
+
+# write the heroku-deployment job here
+heroku-deployment:
+  stage: deploy
+  only:
+    - master
+  script:
+  - npm install --production
+  - git push https://heroku:$HEROKU_KEY@git.heroku.com/hacker-news-channel.git HEAD:refs/heads/master
