@@ -1,0 +1,55 @@
+{
+  "name": "newslist",
+  "version": "1.0.0",
+  "description": "clone new list app for https://news.ycombinator.com/",
+  "main": "index.js",
+  "scripts": {
+    "dev:build-server": "webpack --config webpack.ssr.config.js --watch",
+    "dev:build-fe": "webpack -wd",
+    "dev:start": "nodemon --watch build --watch public/app.js --exec \"node ./build/server.js\"",
+    "prod:build-server": "webpack --config webpack.ssr.config.js",
+    "prod:build-fe": "webpack",
+    "dev": "npm-run-all --parallel dev:*",
+    "build": "npm-run-all --parallel prod:*",
+    "start": "babel-node ./build/server.js",
+    "test": "test"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "handlebars": "^4.7.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "npm-run-all": "^4.1.5",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeepanP/hackernews.git"
+  },
+  "keywords": [
+    "hiring",
+    "practice"
+  ],
+  "author": "deepan palaniyappan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DeepanP/hackernews/issues"
+  },
+  "homepage": "https://github.com/DeepanP/hackernews#readme"
+}
