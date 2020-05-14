@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from "react";
-import Feed from "./Feed";
+import NewsItem from "./newsitem";
 
-const FeedsApp = ()=>{
+const NewsApp = ()=>{
 
   const [page, setPage] = useState(1);
 
   const renderFeeds = ()=>{
-    return <Feed/>;
+    return <NewsItem/>;
   }
   const loadMore = ()=>{
     setPage(page+1);
@@ -23,4 +23,4 @@ const FeedsApp = ()=>{
   );
 }
 
-export default FeedsApp;
+export default NewsApp;

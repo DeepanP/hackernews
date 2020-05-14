@@ -1,9 +1,11 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import hbs from 'handlebars';
-import FeedsApp from '../components/app';
+import NewsApp from '../components/app';
+import serialize from 'serialize-javascript';
+import { Provider } from 'react-redux';
 
-export default (req) => {
+export default (store) => {
     const theHtml = `
     <html>
     <head>
@@ -15,13 +17,20 @@ export default (req) => {
     <header>Hacker News Feeds - top | new
     </header>
     <main id="bootstrap">{{{reactele}}}</main>
+    <script>
+        window.INITIAL_NEWS=${serialize(store.getState()).replace(/</g,'\\u003c')}
+    </script>
     <script src="/app.js" charset="utf-8"></script>
     <script src="/vendor.js" charset="utf-8"></script>
     </body>
     </html>
     `;
     const hbsTemplate = hbs.compile(theHtml);
-    const reactele = renderToString(<FeedsApp/>);
+    const reactele = renderToString(
+        <Provider store={store}>
+            <NewsApp/>
+        </Provider>
+    );
     const renderedHtml = hbsTemplate({reactele});
 
     return renderedHtml;

@@ -20,4 +20,4 @@ heroku-deployment:
     - master
   script:
   - npm install --production
-  - git push https://heroku:$HEROKU_KEY@git.heroku.com/hacker-news-channel.git HEAD:refs/heads/master
+  - git push https://heroku:$HEROKU_KEY@git.heroku.com/hacker-news-channel.git HEAD:master
