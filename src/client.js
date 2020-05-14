@@ -1,9 +1,6 @@
 import React from "react";
 import { hydrate } from "react-dom";
-import Routes from './routes';
-import { BrowserRouter } from "react-router-dom";
+import FeedsApp from './components/app';
 
 hydrate(
-<BrowserRouter>
-<Routes/>
-</BrowserRouter>, document.getElementById("bootstrap"));
+<FeedsApp/>, document.getElementById("bootstrap"));

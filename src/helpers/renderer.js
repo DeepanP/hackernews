@@ -1,18 +1,18 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom';
-import Routes from '../routes';
 import hbs from 'handlebars';
+import FeedsApp from '../components/app';
 
 export default (req) => {
     const theHtml = `
     <html>
     <head>
-        <title>Hacker News Channel</title>
+        <title>Hacker News</title>
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-    <header>
-        <div class="container">top | new</div>
+    <header>Hacker News Feeds - top | new
     </header>
     <main id="bootstrap">{{{reactele}}}</main>
     <script src="/app.js" charset="utf-8"></script>
@@ -21,7 +21,7 @@ export default (req) => {
     </html>
     `;
     const hbsTemplate = hbs.compile(theHtml);
-    const reactele = renderToString(<StaticRouter location={req.path} context={{}}><Routes/></StaticRouter>);
+    const reactele = renderToString(<FeedsApp/>);
     const renderedHtml = hbsTemplate({reactele});
 
     return renderedHtml;
