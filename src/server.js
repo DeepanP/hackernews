@@ -12,7 +12,7 @@ app.use(compression());
 
 app.use(express.static('public'));
 
-app.get("*", (req, res, next) => {
+app.get("*", (req, res) => {
     const store = serverStore();
     store.dispatch(getNews()).then(()=>{
         res.status(201).send(renderer(store));
