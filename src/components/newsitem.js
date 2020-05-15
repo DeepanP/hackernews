@@ -58,7 +58,7 @@ const NewsItem = React.memo(({news, domain, index})=>{
       <div className='comments'>{index+1}</div>
       <div className='upvotes'>
         {news.points + point}
-        {upVoteIcon && <button className='upvote-action' onClick={upvoteHandler}></button>}
+        {upVoteIcon && <button aria-label="news upvote" className='upvote-action' onClick={upvoteHandler}></button>}
       </div>
       <div className='main'>
         <div className='title' dangerouslySetInnerHTML={{__html: news.title}}></div>

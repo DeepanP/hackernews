@@ -7,7 +7,8 @@ import { Provider } from 'react-redux';
 
 export default (store) => {
     const theHtml = `
-    <html>
+    <!DOCTYPE html>
+    <html lang="en">
     <head>
         <title>Hacker News</title>
         <link rel="stylesheet" type="text/css" href="main.css">
