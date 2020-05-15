@@ -21,8 +21,6 @@ heroku-deployment:
   stage: deploy
   only:
     - master
-  variables:
-    NODE_ENV: 'production'
   script:
   - npm install --production
   - git push https://heroku:$HEROKU_KEY@git.heroku.com/hacker-news-channel.git HEAD:master
