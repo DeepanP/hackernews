@@ -14,7 +14,7 @@ export default (store) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-    <header>Hacker News Feeds - top | new
+    <header>Hacker News - top | new
     </header>
     <main id="bootstrap">{{{reactele}}}</main>
     <script>
