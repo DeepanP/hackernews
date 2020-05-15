@@ -20,10 +20,10 @@ header {
     padding-right: 5px;
 }
 .wrapper:nth-child(odd){
-    background-color: #f7e4ce40;
+    background-color: #eee4e1;
 }
 .wrapper:nth-child(even){
-    background-color: #f7e4ce;
+    background-color: #e7d8c9;
 }
 .comments {
     width: 50px;

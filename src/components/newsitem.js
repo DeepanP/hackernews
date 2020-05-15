@@ -61,7 +61,7 @@ const NewsItem = React.memo(({news, domain, index})=>{
         {upVoteIcon && <button className='upvote-action' onClick={upvoteHandler}></button>}
       </div>
       <div className='main'>
-        <div className='title'>{news.title}</div>
+        <div className='title' dangerouslySetInnerHTML={{__html: news.title}}></div>
           <details className='info-mobile'>
             <summary>details</summary>
             <div className='domain'>{domain ? `(${domain})` : ''}</div>
