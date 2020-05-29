@@ -6,7 +6,7 @@ export default combineReducers({
     news: (state=[], actions) => {
         switch(actions.type) {
             case GET_NEWS:
-                return actions.payload
+                return [...actions.payload]
             default:
                 return state;
         }

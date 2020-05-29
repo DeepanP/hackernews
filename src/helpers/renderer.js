@@ -1,17 +1,19 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import hbs from 'handlebars';
-import NewsApp from '../components/app';
 import serialize from 'serialize-javascript';
 import { Provider } from 'react-redux';
+import { StaticRouter } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
+import Routes from '../routes';
 
-export default (store) => {
+export default (store, req) => {
     const theHtml = `
     <!DOCTYPE html>
     <html lang="en">
     <head>
         <title>Hacker News</title>
-        <link rel="stylesheet" type="text/css" href="main.css">
+        <link rel="stylesheet" type="text/css" href="/main.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
@@ -29,7 +31,9 @@ export default (store) => {
     const hbsTemplate = hbs.compile(theHtml);
     const reactele = renderToString(
         <Provider store={store}>
-            <NewsApp/>
+            <StaticRouter location={req.path} context={{}}>
+                {renderRoutes(Routes)}
+            </StaticRouter>
         </Provider>
     );
     const renderedHtml = hbsTemplate({reactele});

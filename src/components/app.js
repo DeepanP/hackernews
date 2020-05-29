@@ -6,7 +6,7 @@ import {getNews} from '../actions';
 
 const NewsApp = (props)=>{
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(props.initialPage || 1);
 
   const renderFeeds = ()=>{
     const newsList = props.news.map((item, index) => {
@@ -15,8 +15,18 @@ const NewsApp = (props)=>{
     });
     return newsList;
   }
-  const loadMore = ()=>{
-    setPage(page+1);
+  const renderGraph = () => {
+    return (
+      <div>
+        <h1> Line Chart </h1> 
+      </div>
+    );
+  }
+  const loadPrevious = () => {
+    setPage(page - 1);
+  }
+  const loadNext = () => {
+    setPage(page + 1);
   }
   useEffect(()=>{
     dispatch(getNews(page));
@@ -25,7 +35,16 @@ const NewsApp = (props)=>{
   return (
     <>
         {renderFeeds()}
-        <div className='footer'><button className='btn-more' onClick={loadMore}>more</button></div> 
+        <div className='footer'>
+        <div>
+          { (page > 1) && 
+          <button className='btn-more previous' onClick={loadPrevious}>previous</button>}
+          <button className='btn-more next' onClick={loadNext}>next</button>
+        </div>
+        <div>
+        {renderGraph()}
+        </div>
+        </div> 
     </>
   );
 }
@@ -35,6 +54,10 @@ const mapStateToProps = (state) => {
   }
 };
 
+const loadNews = (store) => {
+  store.dispatch(getNews(store.getState().initialPage || 1));
+}
+
 NewsApp.propTypes = {
   news: PropTypes.arrayOf(PropTypes.any)
 };
@@ -43,4 +66,5 @@ NewsApp.defaultProps = {
   news: []
 };
 
+export { loadNews };
 export default connect(mapStateToProps, {getNews})(NewsApp);
