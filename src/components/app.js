@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, connect} from 'react-redux';
 import NewsItem from "./newsitem";
 import {getNews} from '../actions';
+import { Link } from 'react-router-dom';
 
 const NewsApp = (props)=>{
   const dispatch = useDispatch();
@@ -37,9 +38,9 @@ const NewsApp = (props)=>{
         {renderFeeds()}
         <div className='footer'>
         <div>
-          { (page > 1) && 
-          <button className='btn-more previous' onClick={loadPrevious}>previous</button>}
-          <button className='btn-more next' onClick={loadNext}>next</button>
+          { (page > 1) &&
+          <Link to={`/${(page-1)}`} >Previous</Link>}
+          <Link to={`/${(page+1)}`} >Next</Link>
         </div>
         <div>
         {renderGraph()}
@@ -54,8 +55,8 @@ const mapStateToProps = (state) => {
   }
 };
 
-const loadNews = (store) => {
-  store.dispatch(getNews(store.getState().initialPage || 1));
+const loadNews = (store, {page}) => {
+  return store.dispatch(getNews(page || 1));
 }
 
 NewsApp.propTypes = {

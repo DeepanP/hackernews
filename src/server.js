@@ -12,18 +12,15 @@ app.use(compression());
 
 app.use(express.static('public'));
 
-app.get("*", (req, res) => {
-    console.log(req.path);
+app.get("/news/?:page", (req, res) => {
     const store = serverStore();
 
     const paths = matchRoutes(Routes, req.path);
-    const serverDataFetch = paths.map((route)=>{
-        return route.loadData ? route.loadData(store) : null
-    })
+    const serverDataFetch = paths.map(({route})=>{
+        return route.loadData ? route.loadData(store, { page : req.params.page}) : null
+    });
 
     Promise.all(serverDataFetch).then(()=>{
-        
-        console.log(store.getState());
         res.status(200).send(renderer(store, req));
     },
     ()=>{

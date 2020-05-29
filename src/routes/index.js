@@ -8,7 +8,7 @@ export default  [
         component: NewsApp,
         routes: [
             {
-                path: '/page/:id',
+                path: '/:page',
                 component: NewsApp
             }
         ]
