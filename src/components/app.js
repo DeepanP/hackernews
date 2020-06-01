@@ -9,7 +9,6 @@ const NewsApp = (props)=>{
   const dispatch = useDispatch();
   
   const match = useRouteMatch('/news/:page');
-  console.log(match);
   const [pageNum, setPageNum] = useState(props.pages && props.pages.current || 1);
 
   useEffect(()=>{
