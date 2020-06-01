@@ -27,14 +27,15 @@
     "handlebars": "^4.7.6",
     "moment": "^2.25.3",
     "react": "^16.13.1",
+    "react-charts": "^2.0.0-beta.7",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
+    "react-router-config": "^5.1.1",
+    "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "serialize-javascript": "^3.0.0",
-    "webpack-node-externals": "^1.7.2",
-    "react-router-config": "^5.1.1",
-    "react-router-dom": "^5.1.2"
+    "webpack-node-externals": "^1.7.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",

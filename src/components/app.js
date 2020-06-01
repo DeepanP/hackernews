@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import { useDispatch, connect} from 'react-redux';
 import NewsItem from "./newsitem";
 import {getNews} from '../actions';
-import { Link, useLocation, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
+import { Chart } from 'react-charts';
 
 const NewsApp = (props)=>{
   const dispatch = useDispatch();
   
   const match = useRouteMatch('/news/:page');
   const [pageNum, setPageNum] = useState(props.pages && props.pages.current || 1);
+  const [chart, setChart] = useState();
 
   useEffect(()=>{
     setPageNum(match.params.page);
@@ -18,6 +20,35 @@ const NewsApp = (props)=>{
   useEffect(()=>{
     dispatch(getNews(pageNum));
   },[pageNum]);
+
+
+  const data = React.useMemo(
+    () => 
+    {
+      const plot = props.news.map((item, index = 1) => {
+        return [index, item.points]
+      });
+      return [
+      {
+        label: 'Series 1',
+        data: plot
+      }
+    ];
+  },
+    [props.news]
+  );
+ 
+  const axes = React.useMemo(
+    () => [
+      { primary: true, type: 'ordinal', position: 'bottom' },
+      { type: 'linear', position: 'left', stacked: true }
+    ],
+    []
+  );
+
+  useEffect(()=>{
+    setChart(<Chart data={data} axes={axes} />);
+  },[data,axes]);
 
   const renderFeeds = ()=>{
     const newsList = props.news.map((item, index) => {
@@ -29,7 +60,10 @@ const NewsApp = (props)=>{
   const renderGraph = () => {
     return (
       <div>
-        <h1> Line Chart </h1> 
+        <h2> Line Chart </h2>
+        <div className='chart-container'>
+          {chart}
+        </div>
       </div>
     );
   }

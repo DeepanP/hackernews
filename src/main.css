@@ -83,7 +83,7 @@ header {
     font-size: 14px;
     font-family: sans-serif;
     color: #ff4500;
-    background-color: #bbb;
+    background-color: white;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -105,6 +105,10 @@ header {
 .links a:first-child{
     border: transparent 1px solid;
     border-right: brown 1px solid;
+}
+.chart-container {
+    width: 1000px;
+    height: 300px;
 }
 
 @media (min-width: 320px) and (max-width: 1024px){
@@ -135,6 +139,10 @@ header {
     .author {
         margin-left: 10px;
         color: black;
+    }
+    .chart-container {
+        width: 320px;
+        height: 300px;
     }
 }
 @media (min-width: 1024px) {
