@@ -26,6 +26,7 @@
     "express": "^4.17.1",
     "handlebars": "^4.7.6",
     "moment": "^2.25.3",
+    "performance-now": "^2.1.0",
     "react": "^16.13.1",
     "react-charts": "^2.0.0-beta.7",
     "react-dom": "^16.13.1",
