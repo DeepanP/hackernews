@@ -5,6 +5,7 @@ Anything that good hackers would find interesting. That includes more than hacki
 ## Updated Assessment
 * SSR and Client Routing done
 * Line chart integrated
+* readme updated
 
 
 ## Installation
