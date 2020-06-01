@@ -3,11 +3,22 @@ import PropTypes from 'prop-types';
 import { useDispatch, connect} from 'react-redux';
 import NewsItem from "./newsitem";
 import {getNews} from '../actions';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useRouteMatch } from 'react-router-dom';
 
 const NewsApp = (props)=>{
   const dispatch = useDispatch();
-  const [page, setPage] = useState(props.initialPage || 1);
+  
+  const match = useRouteMatch('/news/:page');
+  console.log(match);
+  const [pageNum, setPageNum] = useState(props.pages && props.pages.current || 1);
+
+  useEffect(()=>{
+    setPageNum(match.params.page);
+  },[match.params.page])
+
+  useEffect(()=>{
+    dispatch(getNews(pageNum));
+  },[pageNum]);
 
   const renderFeeds = ()=>{
     const newsList = props.news.map((item, index) => {
@@ -23,24 +34,15 @@ const NewsApp = (props)=>{
       </div>
     );
   }
-  const loadPrevious = () => {
-    setPage(page - 1);
-  }
-  const loadNext = () => {
-    setPage(page + 1);
-  }
-  useEffect(()=>{
-    dispatch(getNews(page));
-  },[page]);
 
   return (
     <>
         {renderFeeds()}
         <div className='footer'>
-        <div>
-          { (page > 1) &&
-          <Link to={`/${(page-1)}`} >Previous</Link>}
-          <Link to={`/${(page+1)}`} >Next</Link>
+        <div className='links'>
+          { (pageNum > 1) &&
+          <Link to={`/news/${(Number(pageNum)-1)}`} >Previous</Link>}
+          <Link to={`/news/${(Number(pageNum)+1)}`} >Next</Link>
         </div>
         <div>
         {renderGraph()}
@@ -51,7 +53,8 @@ const NewsApp = (props)=>{
 }
 const mapStateToProps = (state) => {
   return {
-      news: state.news
+      news: state.news,
+      pages: state.pages
   }
 };
 

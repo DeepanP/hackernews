@@ -12,8 +12,12 @@ app.use(compression());
 
 app.use(express.static('public'));
 
+app.get("/",(req,res)=>{
+    res.redirect('/news/1');
+});
+
 app.get("/news/?:page", (req, res) => {
-    const store = serverStore();
+    const store = serverStore({ pages : {current: req.params.page}});
 
     const paths = matchRoutes(Routes, req.path);
     const serverDataFetch = paths.map(({route})=>{
