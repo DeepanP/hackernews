@@ -100,11 +100,12 @@ header {
     color: #ff4500;
     text-decoration: underline;
     padding: 0 5px;
+    border: transparent 1px solid;
+    border-left: brown 1px solid;
 }
 
 .links a:first-child{
-    border: transparent 1px solid;
-    border-right: brown 1px solid;
+    border: none;
 }
 .chart-container {
     width: 1000px;

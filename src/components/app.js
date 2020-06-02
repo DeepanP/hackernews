@@ -26,7 +26,7 @@ const NewsApp = (props)=>{
     () => 
     {
       const plot = props.news.map((item, index = 1) => {
-        return [index, item.points]
+        return [index+1, item.points]
       });
       return [
       {
