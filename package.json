@@ -23,7 +23,7 @@
     "@babel/polyfill": "^7.8.7",
     "axios": "^0.19.2",
     "compression": "^1.7.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "handlebars": "^4.7.6",
     "moment": "^2.25.3",
     "performance-now": "^2.1.0",
